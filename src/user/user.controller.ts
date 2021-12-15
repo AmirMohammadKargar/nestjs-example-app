@@ -1,3 +1,4 @@
+import { UserRO } from 'src/user/dtos/user.dto';
 import { User } from './user.entity';
 import { ValidationPipe } from './../shared/validation.pipe';
 import { UserDTO } from './dtos/user.dto';
@@ -29,7 +30,11 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @ApiOperation({ summary: 'Return all users' })
-  @ApiOkResponse({ type: User, isArray: true, description: 'Return all users' })
+  @ApiOkResponse({
+    type: User,
+    isArray: true,
+    description: 'Return all users',
+  })
   @Get('users')
   @UseGuards(new AuthGuard())
   @ApiBearerAuth('JWT-auth')
@@ -40,7 +45,7 @@ export class UserController {
 
   @ApiOperation({ summary: 'Login the user and return token' })
   @ApiCreatedResponse({
-    type: User,
+    type: UserRO,
     description: 'Login the user and return token',
   })
   @Post('login')
@@ -51,7 +56,7 @@ export class UserController {
 
   @ApiOperation({ summary: 'Register the user and return user info' })
   @ApiOkResponse({
-    type: User,
+    type: UserRO,
     description: 'Register the user and return user info',
   })
   @Post('register')

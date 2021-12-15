@@ -13,9 +13,18 @@ export class IdeaDTO {
 }
 
 export class IdeaRO {
+  @ApiProperty()
   id?: string;
+
+  @ApiProperty()
   created: Date;
+
+  @ApiProperty()
   idea: string;
+
+  @ApiProperty()
   description: string;
+
+  @ApiProperty()
   author: UserRO;
 }

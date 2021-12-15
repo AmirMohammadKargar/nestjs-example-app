@@ -1,7 +1,7 @@
 import { Idea } from './idea.entity';
 import { AuthGuard } from './../guard/auth.guard';
 import { ValidationPipe } from './../shared/validation.pipe';
-import { IdeaDTO } from './dtos/idea.dto';
+import { IdeaDTO, IdeaRO } from './dtos/idea.dto';
 import { IdeaService } from './idea.service';
 import {
   Body,
@@ -34,7 +34,7 @@ export class IdeaController {
 
   @ApiOperation({ summary: 'Return all ideas' })
   @ApiOkResponse({
-    type: Idea,
+    type: IdeaRO,
     isArray: true,
     description: 'Return all ideas',
   })
@@ -46,7 +46,7 @@ export class IdeaController {
 
   @ApiOperation({ summary: 'Create new idea and return it' })
   @ApiCreatedResponse({
-    type: Idea,
+    type: IdeaRO,
     description: 'Create new idea and return it',
   })
   @Post()
@@ -56,7 +56,7 @@ export class IdeaController {
   }
 
   @ApiOperation({ summary: 'Return an idea' })
-  @ApiOkResponse({ type: Idea, description: 'Return an idea' })
+  @ApiOkResponse({ type: IdeaRO, description: 'Return an idea' })
   @Get(':id')
   readIdea(@User() user, @Param('id') id: string) {
     return this.ideaService.read(id);
@@ -64,7 +64,7 @@ export class IdeaController {
 
   @ApiOperation({ summary: 'Update an idea' })
   @ApiCreatedResponse({
-    type: Idea,
+    type: IdeaRO,
     description: 'Update an idea',
   })
   @Put(':id')
