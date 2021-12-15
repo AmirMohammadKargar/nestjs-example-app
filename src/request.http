@@ -1,0 +1,59 @@
+POST http://localhost:4000/api/v1/idea
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkwNmQ5YmMyLTNmMzEtNDY4NC05Mjk3LTBiMmNkZDI2NTI5ZSIsInVzZXJuYW1lIjoiYW1pciIsImlhdCI6MTYzOTU0ODM5NCwiZXhwIjoxNjQwMTUzMTk0fQ.EzrbbgioPTgs68PNncQnXlax-j_OZAQx-3he4nF9khY
+
+{
+    "idea":"Test",
+    "description":"This is Test"
+}
+
+GET http://localhost:4000/v1/idea
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkwNmQ5YmMyLTNmMzEtNDY4NC05Mjk3LTBiMmNkZDI2NTI5ZSIsInVzZXJuYW1lIjoiYW1pciIsImlhdCI6MTYzOTU0ODM5NCwiZXhwIjoxNjQwMTUzMTk0fQ.EzrbbgioPTgs68PNncQnXlax-j_OZAQx-3he4nF9khY
+
+
+GET http://localhost:4000/api/v1/s
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkwNmQ5YmMyLTNmMzEtNDY4NC05Mjk3LTBiMmNkZDI2NTI5ZSIsInVzZXJuYW1lIjoiYW1pciIsImlhdCI6MTYzOTU0ODM5NCwiZXhwIjoxNjQwMTUzMTk0fQ.EzrbbgioPTgs68PNncQnXlax-j_OZAQx-3he4nF9khY
+
+
+GET http://localhost:4000/api/v1/idea/19781b0d-3ffb-46fb-b553-92bf8fd15bfc
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkwNmQ5YmMyLTNmMzEtNDY4NC05Mjk3LTBiMmNkZDI2NTI5ZSIsInVzZXJuYW1lIjoiYW1pciIsImlhdCI6MTYzOTU0ODM5NCwiZXhwIjoxNjQwMTUzMTk0fQ.EzrbbgioPTgs68PNncQnXlax-j_OZAQx-3he4nF9khY
+
+
+PUT http://localhost:4000/api/v1/idea/19781b0d-3ffb-46fb-b553-92bf8fd15bfc
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkwNmQ5YmMyLTNmMzEtNDY4NC05Mjk3LTBiMmNkZDI2NTI5ZSIsInVzZXJuYW1lIjoiYW1pciIsImlhdCI6MTYzOTU0ODM5NCwiZXhwIjoxNjQwMTUzMTk0fQ.EzrbbgioPTgs68PNncQnXlax-j_OZAQx-3he4nF9khY
+
+{
+    "idea":"Updated Test !!!",
+    "description":"This is Test Updated!!!!"
+}
+
+
+DELETE  http://localhost:4000/api/v1/idea/19781b0d-3ffb-46fb-b553-92bf8fd15bfc
+Content-Type: application/json
+
+
+
+POST http://localhost:4000/api/v1/auth/register
+Content-Type: application/json
+
+{
+    "username":"amir",
+    "password":"123456"
+}
+
+
+POST http://localhost:4000/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "username":"amir",
+    "password":"123456"
+}
+
+
+GET http://localhost:4000/api/v1/auth/users
+Content-Type: application/json
