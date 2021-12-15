@@ -6,10 +6,10 @@ import { AppService } from './app.service';
 import { IdeaModule } from './idea/idea.module';
 import { HttpErrorFilter } from './shared/http-error.fliter';
 import { UserModule } from './user/user.module';
+import { RedisCacheModule } from './shared/cache/cache.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), IdeaModule, UserModule],
-
+  imports: [TypeOrmModule.forRoot(), IdeaModule, UserModule, RedisCacheModule],
   providers: [
     AppService,
     {

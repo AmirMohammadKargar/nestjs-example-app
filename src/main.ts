@@ -3,11 +3,14 @@ import { AppModule } from './app.module';
 import 'dotenv/config';
 import { Logger, VersioningType } from '@nestjs/common';
 import swaggerSetup from './swagger/swagger-setup';
+import * as helmet from 'helmet';
 
 const port = process.env.PORT || 3000;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  app.use(helmet());
 
   app.enableVersioning({
     type: VersioningType.URI,

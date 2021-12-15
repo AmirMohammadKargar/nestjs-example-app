@@ -44,9 +44,12 @@ export class UserController {
   }
 
   @ApiOperation({ summary: 'Login the user and return token' })
-  @ApiCreatedResponse({
+  @ApiOkResponse({
     type: UserRO,
     description: 'Login the user and return token',
+  })
+  @ApiResponse({
+    status: 400,
   })
   @Post('login')
   @UsePipes(new ValidationPipe())

@@ -28,7 +28,7 @@ import {
 @Controller({ path: 'idea', version: '1' })
 @UseGuards(new AuthGuard())
 @ApiBearerAuth('JWT-auth')
-@ApiResponse({ status: 401, description: 'Not Authorized' })
+@ApiResponse({ status: 403, description: 'Not Authorized' })
 export class IdeaController {
   constructor(private ideaService: IdeaService) {}
 

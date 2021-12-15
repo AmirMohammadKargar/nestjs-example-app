@@ -1,16 +1,17 @@
+import { RedisCacheService } from './../shared/cache/cache.service';
 import { IdeaDTO, IdeaRO } from './dtos/idea.dto';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Idea } from './idea.entity';
 import { User } from 'src/user/user.entity';
-import { UserRO } from 'src/user/dtos/user.dto';
 
 @Injectable()
 export class IdeaService {
   constructor(
     @InjectRepository(Idea) private ideaRepo: Repository<Idea>,
     @InjectRepository(User) private userRepo: Repository<User>,
+    private readonly redisCacheService: RedisCacheService,
   ) {}
 
   toResponseObject(idea: Idea): IdeaRO {
@@ -30,6 +31,9 @@ export class IdeaService {
   }
 
   async read(id: string): Promise<IdeaRO> {
+    const cachedData = await this.redisCacheService.get(id);
+    if (cachedData) return cachedData;
+
     const idea = await this.ideaRepo.findOne({
       where: { id },
       relations: ['author'],
@@ -37,6 +41,8 @@ export class IdeaService {
     if (!idea) {
       throw new NotFoundException();
     }
+
+    this.redisCacheService.set(id, this.toResponseObject(idea));
 
     return this.toResponseObject(idea);
   }
