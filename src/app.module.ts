@@ -7,9 +7,10 @@ import { IdeaModule } from './idea/idea.module';
 import { HttpErrorFilter } from './shared/http-error.fliter';
 import { UserModule } from './user/user.module';
 import { RedisCacheModule } from './shared/cache/cache.module';
+import { CommentModule } from './comment/comment.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), IdeaModule, UserModule, RedisCacheModule],
+  imports: [TypeOrmModule.forRoot(), IdeaModule, UserModule, RedisCacheModule, CommentModule],
   providers: [
     AppService,
     {

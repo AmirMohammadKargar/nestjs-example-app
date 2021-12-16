@@ -11,7 +11,7 @@ services:
           - POSTGRES_USER=root
           - POSTGRES_PASSWORD=password
           - APP_DB_USER=postgres
-          - APP_DB_PASS=postgres
+          - APP_DB_PASS=password
           - APP_DB_NAME=ideas
           
         ports:

@@ -11,6 +11,7 @@ import {
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import { ApiProperty } from '@nestjs/swagger';
+import { Comment } from 'src/comment/comment.entity';
 
 @Entity('user')
 export class User {
@@ -38,6 +39,9 @@ export class User {
 
   @OneToMany((type) => Idea, (idea) => idea.author)
   ideas: Idea;
+
+  @OneToMany((type) => Comment, (idea) => idea.user)
+  comments: Comment[];
 
   @BeforeInsert()
   async hashPassword() {

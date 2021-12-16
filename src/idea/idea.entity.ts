@@ -4,9 +4,11 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
+import { Comment } from 'src/comment/comment.entity';
 
 @Entity('idea')
 export class Idea {
@@ -29,4 +31,8 @@ export class Idea {
   @ApiProperty()
   @ManyToOne((type) => User, (author) => author.ideas)
   author: User;
+
+  @ApiProperty()
+  @OneToMany((type) => Comment, (comment) => comment.idea)
+  comments: Comment[];
 }
