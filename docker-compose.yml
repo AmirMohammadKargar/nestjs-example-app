@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+    db:
+        hostname: db
+        image: postgres
+        restart: always
+        volumes:
+          - ./db:/docker-entrypoint-initdb.d/
+        environment:
+          - POSTGRES_USER=root
+          - POSTGRES_PASSWORD=password
+          - APP_DB_USER=postgres
+          - APP_DB_PASS=postgres
+          - APP_DB_NAME=ideas
+          
+        ports:
+          - "5432:5432"
+
+    redis:
+      hostname: redis
+      image: 'redis:alpine'
+      ports:
+        - "6379:6379"
+    
+    dev:
+        container_name: nestjs_api_dev
+        image: nestjs-api-dev:1.0.0
+        build:
+            context: .
+            target: development
+            dockerfile: ./Dockerfile
+        depends_on:
+          - db
+          - redis
+        command: npm run start:debug
+        links:
+          - redis
+          - db
+        ports:
+            - "3000:3000"
+            - "8080:8080"
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        restart: unless-stopped
+    prod:
+        container_name: nestjs_api_prod
+        image: nestjs-api-prod:1.0.0
+        build:
+            context: .
+            target: production
+            dockerfile: ./Dockerfile
+        command: npm run start:prod
+        ports:
+            - "3000:3000"
+            - "8081:8081"
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        restart: unless-stopped
